@@ -17,18 +17,17 @@ Source4:        %{name}.logrotate
 Source6:        mongod.sh
 Source102:      SETUP
 
-%{?systemd_requires}
-
-Requires(pre):  shadow-utils
-Requires:       firewalld-filesystem
-
 BuildRequires:  firewalld-filesystem
 BuildRequires:  %{_bindir}/execstack
+BuildRequires:  systemd
 
+Requires:       firewalld-filesystem
 Requires:       mongodb-server
 Requires:       java-headless == 1:1.8.0
-Requires(post): policycoreutils-python
-Requires(postun): policycoreutils-python
+%{?systemd_requires}
+Requires(pre):      shadow-utils
+Requires(post):     policycoreutils-python
+Requires(postun):   policycoreutils-python
 
 # Unbundled fonts
 Requires:       fontawesome-fonts
