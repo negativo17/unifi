@@ -14,7 +14,6 @@ Source0:        http://dl.ubnt.com/%{name}/%{version}/UniFi.unix.zip#/UniFi-%{ve
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
-Source5:        %{name}.sh
 Source6:        mongod.sh
 Source102:      SETUP
 
@@ -185,11 +184,6 @@ find %{buildroot}%{_libdir} -name libubnt_webrtc_jni.so -exec execstack -c {} \;
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
 install -pm 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 
-# Install wrapper script for java to workaround lack of $ORIGIN when executed
-# directly.
-mkdir -p %{buildroot}%{_sbindir}
-install %{SOURCE5} %{buildroot}%{_sbindir}/%{name}
-
 # Workaround script for MongoDB 3.6 no longer accepting --nohttpinterface.
 # See: https://community.ubnt.com/t5/UniFi-Routing-Switching/MongoDB-3-6/m-p/2322445#M86254
 #
@@ -241,7 +235,6 @@ fi
 %{_libdir}/%{name}/
 %{_datadir}/%{name}/lib/native/
 %endif
-%{_sbindir}/%{name}
 %{_sysconfdir}/logrotate.d/%{name}
 %{_unitdir}/%{name}.service
 %{_prefix}/lib/firewalld/services/%{name}.xml
