@@ -4,7 +4,7 @@
 %global __strip /bin/true
 
 Name:           unifi
-Version:        5.10.19
+Version:        5.10.20
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 
@@ -250,6 +250,9 @@ fi
 
 
 %changelog
+* Sat Apr 06 2019 Simone Caronni <negativo17@gmail.com> - 5.10.20-1
+- Update to 5.10.20.
+
 * Sat Mar 09 2019 Simone Caronni <negativo17@gmail.com> - 5.10.19-1
 - Update to 5.10.19.
 
