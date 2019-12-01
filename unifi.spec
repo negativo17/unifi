@@ -4,7 +4,7 @@
 %global __strip /bin/true
 
 Name:           unifi
-Version:        5.11.50
+Version:        5.12.35
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 
@@ -176,6 +176,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sun Dec 01 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-1
+- Update to 5.12.35.
+
 * Sun Oct 20 2019 Simone Caronni <negativo17@gmail.com> - 5.11.50-1
 - Update to 5.11.50.
 - Require a private MongoDB.
