@@ -5,7 +5,7 @@
 
 Name:           unifi
 Version:        5.12.35
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Ubiquiti UniFi controller
 
 License:        Proprietary
@@ -141,6 +141,10 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 mkdir -p %{buildroot}%{_prefix}/lib/firewalld/services
 install -pm 0644 %{SOURCE3} %{buildroot}%{_prefix}/lib/firewalld/services/
 
+# Fix library permissions
+ls -1d %{buildroot}%{_libdir}/%{name}/lib/native/Linux/* | grep -v %{_target_cpu} | xargs rm -frv -
+chmod 755 %{buildroot}%{_libdir}/%{name}/lib/native/Linux/%{_target_cpu}/*.so
+
 # Try to fix java VM warning about running execstack on libubnt_webrtc_jni.so
 execstack -c %{buildroot}%{_libdir}/%{name}/lib/native/Linux/%{_target_cpu}/libubnt_webrtc_jni.so
 
@@ -179,6 +183,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Mon Dec 02 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-3
+- Fix library permissions.
+
 * Mon Dec 02 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-2
 - Remove spurious symlink for mongod.
 
