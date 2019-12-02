@@ -5,7 +5,7 @@
 
 Name:           unifi
 Version:        5.12.35
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Ubiquiti UniFi controller
 
 License:        Proprietary
@@ -15,7 +15,7 @@ Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
-Obsoletes:      %{name}-data
+Obsoletes:      %{name}-data < %{version}
 
 BuildRequires:  firewalld-filesystem
 BuildRequires:  %{_bindir}/execstack
@@ -117,6 +117,9 @@ rm -f webapps/ROOT/app-unifi/fonts/*.{ttf,eot,otf,svg,woff,woff2}
 mkdir -p %{buildroot}%{_libdir}/%{name}
 cp -a ./{bin,conf,dl,lib,webapps}  %{buildroot}%{_libdir}/%{name}/
 
+# Separate package
+rm -f %{buildroot}%{_libdir}/%{name}/bin/mongod
+
 # Create data folders
 mkdir -p %{buildroot}%{_sharedstatedir}/%{name}/{data,run,work}
 ln -sf %{_sharedstatedir}/%{name}/data \
@@ -176,6 +179,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Mon Dec 02 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-2
+- Remove spurious symlink for mongod.
+
 * Sun Dec 01 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-1
 - Update to 5.12.35.
 
