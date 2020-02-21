@@ -5,7 +5,7 @@
 
 Name:           unifi
 Version:        5.12.35
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Ubiquiti UniFi controller
 
 License:        Proprietary
@@ -26,8 +26,6 @@ Requires:       java-headless == 1:1.8.0
 Requires:       %{name}-mongodb >= 3.4
 %{?systemd_requires}
 Requires(pre):      shadow-utils
-Requires(post):     policycoreutils-python
-Requires(postun):   policycoreutils-python
 
 # Unbundled fonts
 Requires:       fontawesome-fonts
@@ -183,6 +181,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Fri Feb 21 2020 Simone Caronni <negativo17@gmail.com> - 5.12.35-4
+- Remove Python SELinux dependency.
+
 * Mon Dec 02 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-3
 - Fix library permissions.
 
