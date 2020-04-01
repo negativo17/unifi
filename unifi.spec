@@ -4,8 +4,8 @@
 %global __strip /bin/true
 
 Name:           unifi
-Version:        5.12.35
-Release:        4%{?dist}
+Version:        5.12.66
+Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 
 License:        Proprietary
@@ -181,6 +181,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed Apr 01 2020 Simone Caronni <negativo17@gmail.com> - 5.12.66-1
+- Update to 5.12.66.
+
 * Fri Feb 21 2020 Simone Caronni <negativo17@gmail.com> - 5.12.35-4
 - Remove Python SELinux dependency.
 
