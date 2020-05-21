@@ -4,7 +4,7 @@
 %global __strip /bin/true
 
 Name:           unifi
-Version:        5.12.66
+Version:        5.12.72
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 
@@ -181,6 +181,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Thu May 21 2020 Simone Caronni <negativo17@gmail.com> - 5.12.72-1
+- Update to 5.12.72.
+
 * Wed Apr 01 2020 Simone Caronni <negativo17@gmail.com> - 5.12.66-1
 - Update to 5.12.66.
 
