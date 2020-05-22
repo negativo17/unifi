@@ -111,6 +111,9 @@ rm -rf lib/native/{Windows,Mac}
 # Unbundle fontawesome font
 rm -f webapps/ROOT/app-unifi/fonts/*.{ttf,eot,otf,svg,woff,woff2}
 
+%build
+# Nothing to build
+
 %install
 mkdir -p %{buildroot}%{_libdir}/%{name}
 cp -a ./{bin,conf,dl,lib,webapps}  %{buildroot}%{_libdir}/%{name}/
