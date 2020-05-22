@@ -1,21 +1,27 @@
-# This is a binary package so debuginfo doesn't do anything useful.
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global __strip /bin/true
 
 Name:           unifi
 Version:        5.12.72
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Ubiquiti UniFi controller
-
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
+ExclusiveArch:  x86_64 aarch64
+
 Source0:        http://dl.ubnt.com/%{name}/%{version}/UniFi.unix.zip#/UniFi-%{version}.unix.zip
+NoSource:       0
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
+Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.18.tgz
+NoSource:       10
+Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.18.tgz
+NoSource:       11
+
 Obsoletes:      %{name}-data < %{version}
+Obsoletes:      %{name}-mongodb < %{version}
 
 BuildRequires:  firewalld-filesystem
 BuildRequires:  %{_bindir}/execstack
@@ -23,9 +29,9 @@ BuildRequires:  systemd
 
 Requires:       firewalld-filesystem
 Requires:       java-headless == 1:1.8.0
-Requires:       %{name}-mongodb >= 3.4
+Requires:       logrotate
 %{?systemd_requires}
-Requires(pre):      shadow-utils
+Requires(pre):  shadow-utils
 
 # Unbundled fonts
 Requires:       fontawesome-fonts
@@ -94,7 +100,6 @@ Provides:       bundled(tomcat-embed-logging-juli) = 7.0.82
 Provides:       bundled(tomcat-embed-logging-log4j) = 7.0.82
 Provides:       bundled(urlrewritefilter) = 4.0.4
 
-
 %description
 Ubiquiti UniFi server is a centralized management system for UniFi suite of
 devices. After the UniFi server is installed, the UniFi controller can be
@@ -105,30 +110,46 @@ quickly manage system traffic, and further provision individual UniFi devices.
 %prep
 %autosetup -n UniFi
 
-# Remove non-native executables
-rm -rf lib/native/{Windows,Mac}
-
-# Unbundle fontawesome font
+# Remove bundled fontawesome font
 rm -f webapps/ROOT/app-unifi/fonts/*.{ttf,eot,otf,svg,woff,woff2}
+
+# Replace empty symlink with mongod executable
+rm -fr bin
+%ifarch x86_64
+tar -xvz --strip-component=1 --no-anchored -f %{SOURCE10} */bin/mongod
+%endif
+%ifarch aarch64
+tar -xvz --strip-component=1 --no-anchored -f %{SOURCE11} */bin/mongod
+%endif
+
+# Strip binaries for which we have no source matching in the package build
+strip bin/mongod lib/native/Linux/%{_arch}/*.so
+
+# Try to fix java VM warning about running execstack on libubnt_webrtc_jni.so
+execstack -c lib/native/Linux/%{_arch}/libubnt_webrtc_jni.so
 
 %build
 # Nothing to build
 
 %install
 mkdir -p %{buildroot}%{_libdir}/%{name}
-cp -a ./{bin,conf,dl,lib,webapps}  %{buildroot}%{_libdir}/%{name}/
+cp -a ./{bin,conf,dl,lib,webapps} %{buildroot}%{_libdir}/%{name}/
 
-# Separate package
-rm -f %{buildroot}%{_libdir}/%{name}/bin/mongod
+# Remove non-native executables and fix permissions
+rm -rf lib/native/{Windows,Mac}
+shopt -s extglob
+rm -rf %{buildroot}%{_libdir}/%{name}/lib/native/Linux/!(%{_arch})
+shopt -u extglob
+chmod 755 %{buildroot}%{_libdir}/%{name}/lib/native/Linux/%{_arch}/*.so
 
 # Create data folders
 mkdir -p %{buildroot}%{_sharedstatedir}/%{name}/{data,run,work}
 ln -sf %{_sharedstatedir}/%{name}/data \
-       %{buildroot}%{_libdir}/%{name}/data
+    %{buildroot}%{_libdir}/%{name}/data
 ln -sf %{_sharedstatedir}/%{name}/run \
-       %{buildroot}%{_libdir}/%{name}/run
+    %{buildroot}%{_libdir}/%{name}/run
 ln -sf %{_sharedstatedir}/%{name}/work \
-       %{buildroot}%{_libdir}/%{name}/work
+    %{buildroot}%{_libdir}/%{name}/work
 
 # Create log folder
 mkdir -p %{buildroot}%{_localstatedir}/log/%{name}
@@ -141,13 +162,6 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 # Install firewalld config
 mkdir -p %{buildroot}%{_prefix}/lib/firewalld/services
 install -pm 0644 %{SOURCE3} %{buildroot}%{_prefix}/lib/firewalld/services/
-
-# Fix library permissions
-ls -1d %{buildroot}%{_libdir}/%{name}/lib/native/Linux/* | grep -v %{_target_cpu} | xargs rm -frv -
-chmod 755 %{buildroot}%{_libdir}/%{name}/lib/native/Linux/%{_target_cpu}/*.so
-
-# Try to fix java VM warning about running execstack on libubnt_webrtc_jni.so
-execstack -c %{buildroot}%{_libdir}/%{name}/lib/native/Linux/%{_target_cpu}/libubnt_webrtc_jni.so
 
 # Install logrotate config
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
@@ -169,11 +183,12 @@ exit 0
 
 %postun
 %systemd_postun_with_restart %{name}.service
+%{?firewalld_reload}
 
 %files
 %doc readme.txt
 %{_libdir}/%{name}/
-%{_sysconfdir}/logrotate.d/%{name}
+%config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %{_unitdir}/%{name}.service
 %{_prefix}/lib/firewalld/services/%{name}.xml
 %ghost %attr(-,%{name},%{name}) %config(missingok,noreplace) %{_sharedstatedir}/%{name}/data/system.properties
@@ -184,6 +199,16 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Fri May 22 2020 Simone Caronni <negativo17@gmail.com> - 5.12.72-2
+- Bundle MongoDB binary version 4.0 (interim step to upgrade to 4.2).
+- Remove external unifi-mongodb package requirement.
+- Keep only native binaries and strip them as the source is not available for
+  generating debug packages.
+- Add missing logrotate dependency and mark config file.
+- Switch to NoSource for binaries, just run 'spectool -g unifi.spec' to get the
+  binary tarballs.
+- Allow building also for aarch64.
+
 * Thu May 21 2020 Simone Caronni <negativo17@gmail.com> - 5.12.72-1
 - Update to 5.12.72.
 
