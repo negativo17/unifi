@@ -10,15 +10,12 @@ URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        http://dl.ubnt.com/%{name}/%{version}/UniFi.unix.zip#/UniFi-%{version}.unix.zip
-NoSource:       0
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
 Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.18.tgz
-NoSource:       10
 Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.18.tgz
-NoSource:       11
 
 Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
@@ -205,8 +202,6 @@ exit 0
 - Keep only native binaries and strip them as the source is not available for
   generating debug packages.
 - Add missing logrotate dependency and mark config file.
-- Switch to NoSource for binaries, just run 'spectool -g unifi.spec' to get the
-  binary tarballs.
 - Allow building also for aarch64.
 
 * Thu May 21 2020 Simone Caronni <negativo17@gmail.com> - 5.12.72-1
