@@ -2,8 +2,8 @@
 %define __jar_repack %{nil}
 
 Name:           unifi
-Version:        5.12.72
-Release:        2%{?dist}
+Version:        5.13.29
+Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
@@ -196,6 +196,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed Jun 17 2020 Simone Caronni <negativo17@gmail.com> - 5.13.29-1
+- Update to 5.13.29.
+
 * Fri May 22 2020 Simone Caronni <negativo17@gmail.com> - 5.12.72-2
 - Bundle MongoDB binary version 4.0 (interim step to upgrade to 4.2).
 - Remove external unifi-mongodb package requirement.
