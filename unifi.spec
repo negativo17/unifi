@@ -2,7 +2,7 @@
 %define __jar_repack %{nil}
 
 Name:           unifi
-Version:        5.13.29
+Version:        5.13.32
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -168,7 +168,7 @@ install -pm 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 getent group %{name} >/dev/null || groupadd -r %{name}
 getent passwd %{name} >/dev/null || \
     useradd -r -g %{name} -d %{_sharedstatedir}/%{name} -s /sbin/nologin \
-    -c "Ubiquitu UniFi Controller" %{name}
+    -c "Ubiquiti UniFi Controller" %{name}
 exit 0
 
 %post
@@ -196,6 +196,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Thu Jul 09 2020 Simone Caronni <negativo17@gmail.com> - 5.13.32-1
+- Update to 5.13.32.
+
 * Wed Jun 17 2020 Simone Caronni <negativo17@gmail.com> - 5.13.29-1
 - Update to 5.13.29.
 
