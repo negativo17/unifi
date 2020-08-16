@@ -3,7 +3,7 @@
 
 Name:           unifi
 Version:        5.13.32
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
@@ -25,7 +25,7 @@ BuildRequires:  %{_bindir}/execstack
 BuildRequires:  systemd
 
 Requires:       firewalld-filesystem
-Requires:       java-headless == 1:1.8.0
+Requires:       java-1.8.0-openjdk-headless
 Requires:       logrotate
 %{?systemd_requires}
 Requires(pre):  shadow-utils
@@ -196,6 +196,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sun Aug 16 2020 Simone Caronni <negativo17@gmail.com> - 5.13.32-2
+- Use explicit java package dependency.
+
 * Thu Jul 09 2020 Simone Caronni <negativo17@gmail.com> - 5.13.32-1
 - Update to 5.13.32.
 
