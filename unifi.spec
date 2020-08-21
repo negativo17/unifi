@@ -2,8 +2,8 @@
 %define __jar_repack %{nil}
 
 Name:           unifi
-Version:        5.13.32
-Release:        2%{?dist}
+Version:        5.14.22
+Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
@@ -196,6 +196,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Fri Aug 21 2020 Simone Caronni <negativo17@gmail.com> - 5.14.22-1
+- Update to 5.14.22.
+
 * Sun Aug 16 2020 Simone Caronni <negativo17@gmail.com> - 5.13.32-2
 - Use explicit java package dependency.
 
