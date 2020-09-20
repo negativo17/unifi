@@ -2,7 +2,7 @@
 %define __jar_repack %{nil}
 
 Name:           unifi
-Version:        6.0.20
+Version:        6.0.22
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -196,6 +196,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sun Sep 20 2020 Simone Caronni <negativo17@gmail.com> - 6.0.22-1
+- Update to 6.0.22.
+
 * Tue Sep 15 2020 Simone Caronni <negativo17@gmail.com> - 6.0.20-1
 - Update to 6.0.20.
 
