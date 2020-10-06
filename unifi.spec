@@ -2,20 +2,20 @@
 %define __jar_repack %{nil}
 
 Name:           unifi
-Version:        6.0.22
+Version:        6.0.23
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        http://dl.ubnt.com/%{name}/%{version}/UniFi.unix.zip#/UniFi-%{version}.unix.zip
+Source0:        http://dl.ubnt.com/%{name}/%{version}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
-Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.18.tgz
-Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.18.tgz
+Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.19.tgz
+Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.19.tgz
 
 Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
@@ -30,73 +30,6 @@ Requires:       logrotate
 %{?systemd_requires}
 Requires(pre):  shadow-utils
 
-# Unbundled fonts
-Requires:       fontawesome-fonts
-Requires:       fontawesome-fonts-web
-
-# https://bugzilla.redhat.com/show_bug.cgi?id=1517565
-Provides:       bundled(lato-fonts-web)
-Provides:       bundled(ubnt-fonts)
-
-# Bundled java libraries
-# This needs to be automated!
-Provides:       bundled(annotations) = 2.0.0
-Provides:       bundled(aws-java-sdk-cloudwatch) = 1.9.3
-Provides:       bundled(aws-java-sdk-core) = 1.9.3
-Provides:       bundled(aws-java-sdk-s3) = 1.9.3
-Provides:       bundled(commons-beanutils) = 1.9.1
-Provides:       bundled(commons-codec) = 1.7
-Provides:       bundled(commons-httpclient) = 3.1
-Provides:       bundled(commons-httpclient-contrib) = 3.1
-Provides:       bundled(commons-io) = 2.4
-Provides:       bundled(commons-lang) = 2.6
-Provides:       bundled(commons-logging) = 1.1.3
-Provides:       bundled(commons-net) = 3.3
-Provides:       bundled(commons-pool2) = 2.2
-Provides:       bundled(commons-validator) = 1.5.0
-Provides:       bundled(compiler) = 0.8.18
-Provides:       bundled(cron4j) = 2.2.5
-Provides:       bundled(dom4j) = 1.3
-Provides:       bundled(ecj) = 4.3.1
-Provides:       bundled(gson) = 2.2.4
-Provides:       bundled(guava) = 14.0.1
-Provides:       bundled(httpclient) = 4.2
-Provides:       bundled(httpcore) = 4.2
-Provides:       bundled(jackson-annotations) = 2.1.1
-Provides:       bundled(jackson-core) = 2.1.1
-Provides:       bundled(jackson-databind) = 2.1.1
-Provides:       bundled(Java-WebSocket) = 1.3.0
-Provides:       bundled(jedis) = 2.8.1
-Provides:       bundled(jmdns) = 3.4.1
-Provides:       bundled(joda-time) = 2.9.4
-Provides:       bundled(jorbis) = 0.0.17
-Provides:       bundled(jsch) = 0.1.51
-Provides:       bundled(jstl) = 1.2
-Provides:       bundled(jstun) = 0.7.3
-Provides:       bundled(jul-to-slf4j) = 1.7.6
-Provides:       bundled(log4j) = 1.2.17
-Provides:       bundled(mail) = 1.4.7
-Provides:       bundled(mongo-java-driver) = 2.14.3
-Provides:       bundled(radclient4)
-Provides:       bundled(servo-core) = 0.9.4
-Provides:       bundled(servo-graphite) = 0.9.4
-Provides:       bundled(slf4j-api) = 1.7.6
-Provides:       bundled(slf4j-log4j12) = 1.7.6
-Provides:       bundled(snappy-java) = 1.1.2.6
-Provides:       bundled(spring-beans) = 3.2.8
-Provides:       bundled(spring-context) 3.2.8
-Provides:       bundled(spring-core) = 3.2.8
-Provides:       bundled(spring-expression) = 3.2.8
-Provides:       bundled(spring-test) = 3.2.8
-Provides:       bundled(sshj) = 0.9.0
-Provides:       bundled(tomcat-annotations-api) = 7.0.82
-Provides:       bundled(tomcat-embed-core) =  7.0.82
-Provides:       bundled(tomcat-embed-el) = 7.0.82
-Provides:       bundled(tomcat-embed-jasper) = 7.0.82
-Provides:       bundled(tomcat-embed-logging-juli) = 7.0.82
-Provides:       bundled(tomcat-embed-logging-log4j) = 7.0.82
-Provides:       bundled(urlrewritefilter) = 4.0.4
-
 %description
 Ubiquiti UniFi server is a centralized management system for UniFi suite of
 devices. After the UniFi server is installed, the UniFi controller can be
@@ -106,9 +39,6 @@ quickly manage system traffic, and further provision individual UniFi devices.
 
 %prep
 %autosetup -n UniFi
-
-# Remove bundled fontawesome font
-rm -f webapps/ROOT/app-unifi/fonts/*.{ttf,eot,otf,svg,woff,woff2}
 
 # Replace empty symlink with mongod executable
 rm -fr bin
@@ -196,6 +126,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Tue Oct 06 2020 Simone Caronni <negativo17@gmail.com> - 6.0.23-1
+- Update to 6.0.23.
+- Update MongoDB to 4.0.19.
+
 * Sun Sep 20 2020 Simone Caronni <negativo17@gmail.com> - 6.0.22-1
 - Update to 6.0.22.
 
