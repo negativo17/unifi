@@ -2,14 +2,14 @@
 %define __jar_repack %{nil}
 
 Name:           unifi
-Version:        6.0.23
+Version:        6.0.28
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        http://dl.ubnt.com/%{name}/%{version}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
+Source0:        https://dl.ui.com/%{name}/%{version}-39f3b98a31/UniFi.unix.zip#/UniFi.unix.%{version}.zip
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
@@ -126,6 +126,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Mon Oct 19 2020 Simone Caronni <negativo17@gmail.com> - 6.0.28-1
+- Update to 6.0.28.
+- Switch to URL format from the releases page: https://community.ui.com/releases
+
 * Tue Oct 06 2020 Simone Caronni <negativo17@gmail.com> - 6.0.23-1
 - Update to 6.0.23.
 - Update MongoDB to 4.0.19.
