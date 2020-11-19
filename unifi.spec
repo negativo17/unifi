@@ -9,7 +9,7 @@ License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://dl.ui.com/%{name}/%{version}-39f3b98a31/UniFi.unix.zip#/UniFi.unix.%{version}.zip
+Source0:        https://dl.ui.com/%{name}/%{version}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
