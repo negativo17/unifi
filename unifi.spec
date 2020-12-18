@@ -1,21 +1,23 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
 
+%global shortcommit a8e04a273f
+
 Name:           unifi
-Version:        6.0.41
+Version:        6.0.43
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://dl.ui.com/%{name}/%{version}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
+Source0:        https://dl.ui.com/%{name}/%{version}%{?shortcommit:-%{shortcommit}}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
-Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.19.tgz
-Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.19.tgz
+Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.21.tgz
+Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.21.tgz
 
 Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
@@ -126,6 +128,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Fri Dec 18 2020 Simone Caronni <negativo17@gmail.com> - 6.0.43-1
+- Update to 6.0.43.
+- Update mongodb binary to 4.0.21.
+
 * Thu Dec 03 2020 Simone Caronni <negativo17@gmail.com> - 6.0.41-1
 - Update to 6.0.41.
 
