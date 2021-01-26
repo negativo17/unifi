@@ -115,7 +115,6 @@ exit 0
 %{?firewalld_reload}
 
 %files
-%doc readme.txt
 %{_libdir}/%{name}/
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %{_unitdir}/%{name}.service
