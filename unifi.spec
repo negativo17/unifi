@@ -1,10 +1,10 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
 
-#global shortcommit a8e04a273f
+%global shortcommit 5b1c34fbe3
 
 Name:           unifi
-Version:        6.0.45
+Version:        6.1.61
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -127,6 +127,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sun Mar 07 2021 Simone Caronni <negativo17@gmail.com> - 6.1.61-1
+- Update to 6.1.61.
+
 * Tue Jan 26 2021 Simone Caronni <negativo17@gmail.com> - 6.0.45-1
 - Update to 6.0.45.
 
