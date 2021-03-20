@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
 
-%global shortcommit 72b68abfe3
+%global shortcommit fbf03b3a76
 
 Name:           unifi
 Version:        6.1.70
