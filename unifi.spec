@@ -1,10 +1,10 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
 
-%global shortcommit ceb3ba714d
+%global shortcommit d3a253013f
 
 Name:           unifi
-Version:        6.2.17
+Version:        6.2.23
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -16,8 +16,8 @@ Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
-Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.21.tgz
-Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.21.tgz
+Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.24.tgz
+Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.24.tgz
 
 Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
@@ -127,6 +127,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Mon May 10 2021 Simone Caronni <negativo17@gmail.com> - 6.2.23-1
+- Update to 6.2.23.
+- Update MongoDB to 4.0.24.
+
 * Tue Apr 13 2021 Simone Caronni <negativo17@gmail.com> - 6.2.17-1
 - Update to 6.2.17.
 
