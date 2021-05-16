@@ -1,10 +1,10 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
 
-%global shortcommit d3a253013f
+%global shortcommit de0c6132b7
 
 Name:           unifi
-Version:        6.2.23
+Version:        6.2.25
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -127,6 +127,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sun May 16 2021 Simone Caronni <negativo17@gmail.com> - 6.2.25-1
+- Update to 6.2.25.
+
 * Mon May 10 2021 Simone Caronni <negativo17@gmail.com> - 6.2.23-1
 - Update to 6.2.23.
 - Update MongoDB to 4.0.24.
