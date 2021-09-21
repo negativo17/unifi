@@ -2,7 +2,7 @@
 %define __jar_repack %{nil}
 
 Name:           unifi
-Version:        6.2.26
+Version:        6.4.54
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -64,7 +64,7 @@ execstack -c .%{_prefix}/lib/%{name}/lib/native/Linux/%{_arch}/libubnt_webrtc_jn
 
 %install
 mkdir -p %{buildroot}%{_libdir}/%{name}
-cp -a .%{_prefix}/lib/%{name}/{bin,conf,dl,lib,webapps} %{buildroot}%{_libdir}/%{name}/
+cp -a .%{_prefix}/lib/%{name}/{conf,dl,lib,webapps} %{buildroot}%{_libdir}/%{name}/
 
 # Remove non-native executables and fix permissions
 rm -rf .%{_prefix}/lib/%{name}/lib/native/{Windows,Mac}
@@ -129,6 +129,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Tue Sep 21 2021 Simone Caronni <negativo17@gmail.com> - 6.4.54-1
+- Update to 6.4.54.
+- Switch to deb archive as Source.
+
 * Tue Jun 15 2021 Simone Caronni <negativo17@gmail.com> - 6.2.26-1
 - Update to 6.2.26.
 
