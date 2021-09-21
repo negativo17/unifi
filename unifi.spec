@@ -1,8 +1,6 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
 
-%global shortcommit a79cb15f05
-
 Name:           unifi
 Version:        6.2.26
 Release:        1%{?dist}
@@ -11,7 +9,7 @@ License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://dl.ui.com/%{name}/%{version}%{?shortcommit:-%{shortcommit}}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
+Source0:        https://dl.ui.com/%{name}/%{version}/%{name}_sysvinit_all.deb#/%{name}-%{version}.deb
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
@@ -40,7 +38,11 @@ instantly provision thousands of UniFi devices, map out network topology,
 quickly manage system traffic, and further provision individual UniFi devices.
 
 %prep
-%autosetup -n UniFi
+%setup -q -c -T
+
+ar x %{SOURCE0} data.tar.xz
+tar -xJf data.tar.xz
+rm -f data.tar.xz
 
 # Replace empty symlink with mongod executable
 rm -fr bin
@@ -52,20 +54,20 @@ tar -xvz --strip-component=1 --no-anchored -f %{SOURCE11} */bin/mongod
 %endif
 
 # Strip binaries for which we have no source matching in the package build
-strip bin/mongod lib/native/Linux/%{_arch}/*.so
+strip bin/mongod .%{_prefix}/lib/%{name}/lib/native/Linux/%{_arch}/*.so
 
 # Try to fix java VM warning about running execstack on libubnt_webrtc_jni.so
-execstack -c lib/native/Linux/%{_arch}/libubnt_webrtc_jni.so
+execstack -c .%{_prefix}/lib/%{name}/lib/native/Linux/%{_arch}/libubnt_webrtc_jni.so
 
 %build
 # Nothing to build
 
 %install
 mkdir -p %{buildroot}%{_libdir}/%{name}
-cp -a ./{bin,conf,dl,lib,webapps} %{buildroot}%{_libdir}/%{name}/
+cp -a .%{_prefix}/lib/%{name}/{bin,conf,dl,lib,webapps} %{buildroot}%{_libdir}/%{name}/
 
 # Remove non-native executables and fix permissions
-rm -rf lib/native/{Windows,Mac}
+rm -rf .%{_prefix}/lib/%{name}/lib/native/{Windows,Mac}
 shopt -s extglob
 rm -rf %{buildroot}%{_libdir}/%{name}/lib/native/Linux/!(%{_arch})
 shopt -u extglob
