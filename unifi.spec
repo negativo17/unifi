@@ -1,15 +1,16 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
+%global hash 4b1a918bba
 
 Name:           unifi
-Version:        6.4.54
-Release:        2%{?dist}
+Version:        6.5.52
+Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://dl.ui.com/%{name}/%{version}/%{name}_sysvinit_all.deb#/%{name}-%{version}.deb
+Source0:        https://dl.ui.com/%{name}/%{version}-%{hash}/%{name}_sysvinit_all.deb#/%{name}-%{version}.deb
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
@@ -129,6 +130,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed Nov 17 2021 Simone Caronni <negativo17@gmail.com> - 6.5.52-1
+- Update to 6.5.52.
+
 * Fri Oct 22 2021 Simone Caronni <negativo17@gmail.com> - 6.4.54-2
 - Fix missing MongoDB daemon.
 
