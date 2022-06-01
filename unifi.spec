@@ -3,7 +3,7 @@
 #global hash 8c2c64c175
 
 Name:           unifi
-Version:        7.1.61
+Version:        7.1.66
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -130,6 +130,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed Jun 01 2022 Simone Caronni <negativo17@gmail.com> - 7.1.66-1
+- Update to 7.1.66.
+
 * Fri Apr 29 2022 Simone Caronni <negativo17@gmail.com> - 7.1.61-1
 - Update to 7.1.61.
 
