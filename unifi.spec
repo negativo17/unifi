@@ -1,6 +1,6 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global hash 124045abd4
+#global hash 124045abd4
 
 Name:           unifi
 Version:        7.2.92
