@@ -1,9 +1,9 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-#global hash 124045abd4
+%global hash 4d656fb797
 
 Name:           unifi
-Version:        7.2.92
+Version:        7.2.94
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -130,6 +130,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sat Sep 10 2022 Simone Caronni <negativo17@gmail.com> - 7.2.94-1
+- Update to 7.2.94.
+
 * Tue Aug 09 2022 Simone Caronni <negativo17@gmail.com> - 7.2.92-1
 - Update to 7.2.92.
 
