@@ -1,16 +1,16 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global hash 4d656fb797
+%global hash e5951ac73c
 
 Name:           unifi
-Version:        7.2.94
+Version:        7.2.95
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
 ExclusiveArch:  x86_64 aarch64
 
-Source0:        https://dl.ui.com/%{name}/%{version}%{?hash:-%{hash}}/%{name}_sysvinit_all.deb#/%{name}-%{version}.deb
+Source0:        https://dl.ui.com/%{name}/%{version}%{?hash:-%{hash}}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
 Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
@@ -39,11 +39,7 @@ instantly provision thousands of UniFi devices, map out network topology,
 quickly manage system traffic, and further provision individual UniFi devices.
 
 %prep
-%setup -q -c -T
-
-ar x %{SOURCE0} data.tar.xz
-tar -xJf data.tar.xz
-rm -f data.tar.xz
+%autosetup -n UniFi
 
 # Replace empty symlink with mongod executable
 rm -fr bin
@@ -55,20 +51,20 @@ tar -xvz --strip-component=1 --no-anchored -f %{SOURCE11} */bin/mongod
 %endif
 
 # Strip binaries for which we have no source matching in the package build
-strip bin/mongod .%{_prefix}/lib/%{name}/lib/native/Linux/%{_arch}/*.so
+strip bin/mongod lib/native/Linux/%{_arch}/*.so
 
 # Try to fix java VM warning about running execstack on libubnt_webrtc_jni.so
-execstack -c .%{_prefix}/lib/%{name}/lib/native/Linux/%{_arch}/libubnt_webrtc_jni.so
+execstack -c lib/native/Linux/%{_arch}/libubnt_webrtc_jni.so
 
 %build
 # Nothing to build
 
 %install
 mkdir -p %{buildroot}%{_libdir}/%{name}
-cp -a bin .%{_prefix}/lib/%{name}/{conf,dl,lib,webapps} %{buildroot}%{_libdir}/%{name}/
+cp -a ./{bin,conf,dl,lib,webapps} %{buildroot}%{_libdir}/%{name}/
 
 # Remove non-native executables and fix permissions
-rm -rf .%{_prefix}/lib/%{name}/lib/native/{Windows,Mac}
+rm -rf lib/native/{Windows,Mac}
 shopt -s extglob
 rm -rf %{buildroot}%{_libdir}/%{name}/lib/native/Linux/!(%{_arch})
 shopt -u extglob
@@ -130,6 +126,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Fri Oct 28 2022 Simone Caronni <negativo17@gmail.com> - 7.2.95-1
+- Update to 7.2.95.
+- Switch back to zip file for source.
+
 * Sat Sep 10 2022 Simone Caronni <negativo17@gmail.com> - 7.2.94-1
 - Update to 7.2.94.
 
