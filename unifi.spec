@@ -1,9 +1,9 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global hash e5951ac73c
+#global hash e5951ac73c
 
 Name:           unifi
-Version:        7.2.95
+Version:        7.3.76
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -22,7 +22,6 @@ Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
 
 BuildRequires:  firewalld-filesystem
-BuildRequires:  %{_bindir}/execstack
 BuildRequires:  systemd
 
 Requires:       firewalld-filesystem
@@ -52,9 +51,6 @@ tar -xvz --strip-component=1 --no-anchored -f %{SOURCE11} */bin/mongod
 
 # Strip binaries for which we have no source matching in the package build
 strip bin/mongod lib/native/Linux/%{_arch}/*.so
-
-# Try to fix java VM warning about running execstack on libubnt_webrtc_jni.so
-execstack -c lib/native/Linux/%{_arch}/libubnt_webrtc_jni.so
 
 %build
 # Nothing to build
@@ -126,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed Dec 14 2022 Simone Caronni <negativo17@gmail.com> - 7.3.76-1
+- Update to 7.3.76.
+
 * Fri Oct 28 2022 Simone Caronni <negativo17@gmail.com> - 7.2.95-1
 - Update to 7.2.95.
 - Switch back to zip file for source.
