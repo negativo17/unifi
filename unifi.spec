@@ -3,7 +3,7 @@
 #global hash e5951ac73c
 
 Name:           unifi
-Version:        7.3.76
+Version:        7.3.83
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -25,7 +25,7 @@ BuildRequires:  firewalld-filesystem
 BuildRequires:  systemd
 
 Requires:       firewalld-filesystem
-Requires:       java-1.8.0-openjdk-headless
+Requires:       java-11-openjdk-headless
 Requires:       logrotate
 %{?systemd_requires}
 Requires(pre):  shadow-utils
@@ -122,6 +122,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Mon Feb 6 2023 Brian Likosar <bjlikosar@gmail.com> - 7.3.83-1
+- Update to 7.3.83.
+- Change depedency to Java 11 from deprecated Java 8.
+
 * Wed Dec 14 2022 Simone Caronni <negativo17@gmail.com> - 7.3.76-1
 - Update to 7.3.76.
 
