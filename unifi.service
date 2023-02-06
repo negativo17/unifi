@@ -7,8 +7,8 @@ Wants=network-online.target
 Type=simple
 User=unifi
 WorkingDirectory=/usr/lib64/unifi
-ExecStart=/usr/lib/jvm/jre-1.8.0/bin/java -jar /usr/lib64/unifi/lib/ace.jar start
-ExecStop=/usr/lib/jvm/jre-1.8.0/bin/java -jar /usr/lib64/unifi/lib/ace.jar stop
+ExecStart=/usr/lib/jvm/jre-11/bin/java -jar /usr/lib64/unifi/lib/ace.jar start
+ExecStop=/usr/lib/jvm/jre-11/bin/java -jar /usr/lib64/unifi/lib/ace.jar stop
 Restart=on-success
 
 [Install]
