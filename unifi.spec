@@ -1,9 +1,9 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-#global hash e5951ac73c
+%global hash 14038469fd
 
 Name:           unifi
-Version:        7.3.83
+Version:        7.4.154
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed May 10 2023 Simone Caronni <negativo17@gmail.com> - 7.4.154-1
+- Update to 7.4.154.
+
 * Mon Feb 6 2023 Brian Likosar <bjlikosar@gmail.com> - 7.3.83-1
 - Update to 7.3.83.
 - Change depedency to Java 11 from deprecated Java 8.
