@@ -1,10 +1,10 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global hash 14038469fd
+%global hash 6ee9e412d1
 
 Name:           unifi
-Version:        7.4.154
-Release:        1%{?dist}
+Version:        7.4.156
+Release:        2%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed May 24 2023 Simone Caronni <negativo17@gmail.com> - 7.4.156-2
+- Update to 7.4.156.
+
 * Wed May 10 2023 Simone Caronni <negativo17@gmail.com> - 7.4.154-1
 - Update to 7.4.154.
 
