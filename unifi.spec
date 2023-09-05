@@ -3,7 +3,7 @@
 #global hash 6ee9e412d1
 
 Name:           unifi
-Version:        7.4.162
+Version:        7.5.174
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -25,7 +25,7 @@ BuildRequires:  firewalld-filesystem
 BuildRequires:  systemd
 
 Requires:       firewalld-filesystem
-Requires:       java-11-openjdk-headless
+Requires:       java-17-openjdk-headless
 Requires:       logrotate
 %{?systemd_requires}
 Requires(pre):  shadow-utils
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Tue Sep 05 2023 Simone Caronni <negativo17@gmail.com> - 7.5.174-1
+- Update to 7.5.174.
+
 * Mon Jul 10 2023 Simone Caronni <negativo17@gmail.com> - 7.4.162-1
 - Update to 7.4.162.
 
