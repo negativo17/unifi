@@ -3,7 +3,7 @@
 #global hash 6ee9e412d1
 
 Name:           unifi
-Version:        7.5.174
+Version:        7.5.176
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Fri Sep 29 2023 Simone Caronni <negativo17@gmail.com> - 7.5.176-1
+- Update to 7.5.176.
+
 * Tue Sep 05 2023 Simone Caronni <negativo17@gmail.com> - 7.5.174-1
 - Update to 7.5.174.
 
