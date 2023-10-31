@@ -3,7 +3,7 @@
 #global hash 6ee9e412d1
 
 Name:           unifi
-Version:        7.5.176
+Version:        7.5.187
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -122,6 +122,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Tue Oct 31 2023 Simone Caronni <negativo17@gmail.com> - 7.5.187-1
+- Update to 7.5.187.
+- Trim changelog.
+
 * Fri Sep 29 2023 Simone Caronni <negativo17@gmail.com> - 7.5.176-1
 - Update to 7.5.176.
 
@@ -174,144 +178,3 @@ exit 0
 
 * Wed Feb 16 2022 Simone Caronni <negativo17@gmail.com> - 7.0.22-1
 - Update to 7.0.22.
-
-* Fri Dec 17 2021 Simone Caronni <negativo17@gmail.com> - 6.5.55-1
-- Update to 6.5.55.
-
-* Mon Dec 13 2021 Simone Caronni <negativo17@gmail.com> - 6.5.54-1
-- Update to 6.5.54.
-
-* Wed Nov 17 2021 Simone Caronni <negativo17@gmail.com> - 6.5.52-1
-- Update to 6.5.52.
-
-* Fri Oct 22 2021 Simone Caronni <negativo17@gmail.com> - 6.4.54-2
-- Fix missing MongoDB daemon.
-
-* Tue Sep 21 2021 Simone Caronni <negativo17@gmail.com> - 6.4.54-1
-- Update to 6.4.54.
-- Switch to deb archive as Source.
-
-* Tue Jun 15 2021 Simone Caronni <negativo17@gmail.com> - 6.2.26-1
-- Update to 6.2.26.
-
-* Sun May 16 2021 Simone Caronni <negativo17@gmail.com> - 6.2.25-1
-- Update to 6.2.25.
-
-* Mon May 10 2021 Simone Caronni <negativo17@gmail.com> - 6.2.23-1
-- Update to 6.2.23.
-- Update MongoDB to 4.0.24.
-
-* Tue Apr 13 2021 Simone Caronni <negativo17@gmail.com> - 6.2.17-1
-- Update to 6.2.17.
-
-* Fri Mar 26 2021 Simone Caronni <negativo17@gmail.com> - 6.1.71-1
-- Update to 6.1.71.
-
-* Sat Mar 20 2021 Simone Caronni <negativo17@gmail.com> - 6.1.70-1
-- Update to 6.1.70.
-
-* Tue Mar 16 2021 Simone Caronni <negativo17@gmail.com> - 6.1.67-1
-- Update to 6.1.67.
-
-* Sun Mar 07 2021 Simone Caronni <negativo17@gmail.com> - 6.1.61-1
-- Update to 6.1.61.
-
-* Tue Jan 26 2021 Simone Caronni <negativo17@gmail.com> - 6.0.45-1
-- Update to 6.0.45.
-
-* Fri Dec 18 2020 Simone Caronni <negativo17@gmail.com> - 6.0.43-1
-- Update to 6.0.43.
-- Update mongodb binary to 4.0.21.
-
-* Thu Dec 03 2020 Simone Caronni <negativo17@gmail.com> - 6.0.41-1
-- Update to 6.0.41.
-
-* Thu Nov 19 2020 Simone Caronni <negativo17@gmail.com> - 6.0.36-1
-- Update to 6.0.36.
-
-* Mon Oct 19 2020 Simone Caronni <negativo17@gmail.com> - 6.0.28-1
-- Update to 6.0.28.
-- Switch to URL format from the releases page: https://community.ui.com/releases
-
-* Tue Oct 06 2020 Simone Caronni <negativo17@gmail.com> - 6.0.23-1
-- Update to 6.0.23.
-- Update MongoDB to 4.0.19.
-
-* Sun Sep 20 2020 Simone Caronni <negativo17@gmail.com> - 6.0.22-1
-- Update to 6.0.22.
-
-* Tue Sep 15 2020 Simone Caronni <negativo17@gmail.com> - 6.0.20-1
-- Update to 6.0.20.
-
-* Thu Sep 03 2020 Simone Caronni <negativo17@gmail.com> - 5.14.23-1
-- Update to 5.14.23.
-
-* Fri Aug 21 2020 Simone Caronni <negativo17@gmail.com> - 5.14.22-1
-- Update to 5.14.22.
-
-* Sun Aug 16 2020 Simone Caronni <negativo17@gmail.com> - 5.13.32-2
-- Use explicit java package dependency.
-
-* Thu Jul 09 2020 Simone Caronni <negativo17@gmail.com> - 5.13.32-1
-- Update to 5.13.32.
-
-* Wed Jun 17 2020 Simone Caronni <negativo17@gmail.com> - 5.13.29-1
-- Update to 5.13.29.
-
-* Fri May 22 2020 Simone Caronni <negativo17@gmail.com> - 5.12.72-2
-- Bundle MongoDB binary version 4.0 (interim step to upgrade to 4.2).
-- Remove external unifi-mongodb package requirement.
-- Keep only native binaries and strip them as the source is not available for
-  generating debug packages.
-- Add missing logrotate dependency and mark config file.
-- Allow building also for aarch64.
-
-* Thu May 21 2020 Simone Caronni <negativo17@gmail.com> - 5.12.72-1
-- Update to 5.12.72.
-
-* Wed Apr 01 2020 Simone Caronni <negativo17@gmail.com> - 5.12.66-1
-- Update to 5.12.66.
-
-* Fri Feb 21 2020 Simone Caronni <negativo17@gmail.com> - 5.12.35-4
-- Remove Python SELinux dependency.
-
-* Mon Dec 02 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-3
-- Fix library permissions.
-
-* Mon Dec 02 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-2
-- Remove spurious symlink for mongod.
-
-* Sun Dec 01 2019 Simone Caronni <negativo17@gmail.com> - 5.12.35-1
-- Update to 5.12.35.
-
-* Sun Oct 20 2019 Simone Caronni <negativo17@gmail.com> - 5.11.50-1
-- Update to 5.11.50.
-- Require a private MongoDB.
-- Remove ARM conditionals.
-- Simplify packaging.
-
-* Tue Sep 03 2019 Simone Caronni <negativo17@gmail.com> - 5.11.39-1
-- Update to 5.11.39.
-
-* Fri Jul 19 2019 Simone Caronni <negativo17@gmail.com> - 5.10.25-1
-- Update to 5.10.25.
-
-* Sun May 26 2019 Simone Caronni <negativo17@gmail.com> - 5.10.23-1
-- Update to 5.10.23.
-
-* Sat Apr 06 2019 Simone Caronni <negativo17@gmail.com> - 5.10.20-1
-- Update to 5.10.20.
-
-* Sat Mar 09 2019 Simone Caronni <negativo17@gmail.com> - 5.10.19-1
-- Update to 5.10.19.
-
-* Sat Feb 23 2019 Simone Caronni <negativo17@gmail.com> - 5.10.17-1
-- Update to 5.10.17.
-
-* Sun Feb 10 2019 Simone Caronni <negativo17@gmail.com> - 5.10.12-1
-- Update to 5.10.12.
-- Trim changelog.
-- Hardcode Java 1.8.0 version in requirements and systemd unit.
-
-* Tue Nov 13 2018 Richard Shaw <hobbes1069@gmail.com> - 5.9.29-2
-- Update systemd service file to deal with Java 10 in F29+, fixes BZ#5080.
