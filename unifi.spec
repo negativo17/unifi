@@ -1,9 +1,9 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-#global hash 6ee9e412d1
+%global hash fae0c5cdd1
 
 Name:           unifi
-Version:        7.5.187
+Version:        8.0.6
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -15,8 +15,8 @@ Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
-Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-4.0.28.tgz
-Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-arm64-ubuntu1604-4.0.28.tgz
+Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-4.4.25.tgz
+Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-rhel82-4.4.25.tgz
 
 Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Wed Nov 08 2023 Simone Caronni <negativo17@gmail.com> - 8.0.6-1
+- Update to 8.0.6.
+
 * Tue Oct 31 2023 Simone Caronni <negativo17@gmail.com> - 7.5.187-1
 - Update to 7.5.187.
 - Trim changelog.
