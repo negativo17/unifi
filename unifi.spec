@@ -1,9 +1,9 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global hash fae0c5cdd1
+#global hash fae0c5cdd1
 
 Name:           unifi
-Version:        8.0.6
+Version:        8.0.7
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Tue Nov 21 2023 Simone Caronni <negativo17@gmail.com> - 8.0.7-1
+- Update to 8.0.7.
+
 * Wed Nov 08 2023 Simone Caronni <negativo17@gmail.com> - 8.0.6-1
 - Update to 8.0.6.
 
