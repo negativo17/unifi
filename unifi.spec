@@ -3,7 +3,7 @@
 #global hash fae0c5cdd1
 
 Name:           unifi
-Version:        8.0.7
+Version:        8.0.24
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Tue Dec 19 2023 Simone Caronni <negativo17@gmail.com> - 8.0.24-1
+- Update to 8.0.24.
+
 * Tue Nov 21 2023 Simone Caronni <negativo17@gmail.com> - 8.0.7-1
 - Update to 8.0.7.
 
