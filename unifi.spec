@@ -3,8 +3,8 @@
 #global hash fae0c5cdd1
 
 Name:           unifi
-Version:        8.0.26
-Release:        1%{?dist}
+Version:        8.1.113
+Release:        2%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Thu Mar 21 2024 Simone Caronni <negativo17@gmail.com> - 8.1.113-2
+- Update to 8.1.113.
+
 * Sat Jan 06 2024 Simone Caronni <negativo17@gmail.com> - 8.0.26-1
 - Update to 8.0.26.
 
