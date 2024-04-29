@@ -1,10 +1,10 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-#global hash fae0c5cdd1
+%global hash 810cd1e59a
 
 Name:           unifi
-Version:        8.1.113
-Release:        2%{?dist}
+Version:        8.1.127
+Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
 URL:            https://unifi-sdn.ubnt.com/
@@ -15,8 +15,8 @@ Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
-Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-4.4.25.tgz
-Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-rhel82-4.4.25.tgz
+Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel90-7.0.9.tgz
+Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-rhel90-7.0.9.tgz
 
 Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
@@ -122,6 +122,11 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Mon Apr 29 2024 Simone Caronni <negativo17@gmail.com> - 8.1.127-1
+- Update to 8.1.127.
+- Update MongoDB to 7.0.9.
+- Trim changelog.
+
 * Thu Mar 21 2024 Simone Caronni <negativo17@gmail.com> - 8.1.113-2
 - Update to 8.1.113.
 
@@ -159,37 +164,3 @@ exit 0
 * Mon Feb 6 2023 Brian Likosar <bjlikosar@gmail.com> - 7.3.83-1
 - Update to 7.3.83.
 - Change depedency to Java 11 from deprecated Java 8.
-
-* Wed Dec 14 2022 Simone Caronni <negativo17@gmail.com> - 7.3.76-1
-- Update to 7.3.76.
-
-* Fri Oct 28 2022 Simone Caronni <negativo17@gmail.com> - 7.2.95-1
-- Update to 7.2.95.
-- Switch back to zip file for source.
-
-* Sat Sep 10 2022 Simone Caronni <negativo17@gmail.com> - 7.2.94-1
-- Update to 7.2.94.
-
-* Tue Aug 09 2022 Simone Caronni <negativo17@gmail.com> - 7.2.92-1
-- Update to 7.2.92.
-
-* Thu Jul 21 2022 Simone Caronni <negativo17@gmail.com> - 7.1.68-1
-- Update to 7.1.68.
-
-* Fri Jun 24 2022 Simone Caronni <negativo17@gmail.com> - 7.1.67-1
-- Update to 7.1.67.
-
-* Wed Jun 01 2022 Simone Caronni <negativo17@gmail.com> - 7.1.66-1
-- Update to 7.1.66.
-
-* Fri Apr 29 2022 Simone Caronni <negativo17@gmail.com> - 7.1.61-1
-- Update to 7.1.61.
-
-* Sun Apr 03 2022 Simone Caronni <negativo17@gmail.com> - 7.0.25-1
-- Update to 7.0.25.
-
-* Tue Mar 08 2022 Simone Caronni <negativo17@gmail.com> - 7.0.23-1
-- Update to 7.0.23.
-
-* Wed Feb 16 2022 Simone Caronni <negativo17@gmail.com> - 7.0.22-1
-- Update to 7.0.22.
