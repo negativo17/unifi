@@ -1,13 +1,13 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global hash 1c329ecd26
+%global hash y2b2oj1o96
 
 Name:           unifi
-Version:        8.2.93
+Version:        8.4.59
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
-URL:            https://unifi-sdn.ubnt.com/
+URL:            https://ui.com/
 ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://dl.ui.com/%{name}/%{version}%{?hash:-%{hash}}/UniFi.unix.zip#/UniFi.unix.%{version}.zip
@@ -15,8 +15,8 @@ Source1:        %{name}.service
 Source3:        %{name}.xml
 Source4:        %{name}.logrotate
 
-Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel90-7.0.9.tgz
-Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-rhel90-7.0.9.tgz
+Source10:       https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel90-7.0.12.tgz
+Source11:       https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-rhel90-7.0.12.tgz
 
 Obsoletes:      %{name}-data < %{version}
 Obsoletes:      %{name}-mongodb < %{version}
@@ -122,6 +122,10 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sun Aug 25 2024 Simone Caronni <negativo17@gmail.com> - 8.4.59-1
+- Update to 8.4.59.
+- Update MongoDB to 7.0.12.
+
 * Fri Jun 14 2024 Simone Caronni <negativo17@gmail.com> - 8.2.93-1
 - Update to 8.2.93.
 
