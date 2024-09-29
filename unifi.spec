@@ -1,9 +1,9 @@
 %global debug_package %{nil}
 %define __jar_repack %{nil}
-%global hash y2b2oj1o96
+%global hash i3q2j125cz
 
 Name:           unifi
-Version:        8.4.59
+Version:        8.4.62
 Release:        1%{?dist}
 Summary:        Ubiquiti UniFi controller
 License:        Proprietary
@@ -122,6 +122,9 @@ exit 0
 %dir %attr(-,%{name},%{name}) %{_sharedstatedir}/%{name}/work
 
 %changelog
+* Sun Sep 29 2024 Simone Caronni <negativo17@gmail.com> - 8.4.62-1
+- Update to 8.4.62.
+
 * Sun Aug 25 2024 Simone Caronni <negativo17@gmail.com> - 8.4.59-1
 - Update to 8.4.59.
 - Update MongoDB to 7.0.12.
